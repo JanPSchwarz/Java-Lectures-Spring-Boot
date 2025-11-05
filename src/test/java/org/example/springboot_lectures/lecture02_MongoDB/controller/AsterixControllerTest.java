@@ -36,21 +36,21 @@ class AsterixControllerTest {
 
         asterixRepo.save(asterix);
 
+        String expected = """
+                     [
+                         {
+                          "id": "1",
+                          "name": "Asterix",
+                          "age":  35,
+                          "profession": "Warrior"
+                         }
+                     ]
+                """;
+
         // WHEN
         mockMvc.perform(get("/api/asterix/chars"))
                 .andExpect(status().isOk())
-                .andExpect(content().json(
-                        """
-                                [
-                                    {
-                                      "id": "1",
-                                      "name": "Asterix",
-                                      "age": 35,
-                                      "profession": "Warrior"
-                                    }
-                                ]
-                                """
-                ));
+                .andExpect(content().json(expected));
 
         // THEN
     }
@@ -66,11 +66,13 @@ class AsterixControllerTest {
         asterixRepo.save(obelix);
 
         String expected = """
-                     {
-                      "name": "Asterix",
-                      "age":  35,
-                      "profession": "Warrior"
-                     }
+                     [
+                         {
+                          "name": "Obelix",
+                          "age":  35,
+                          "profession": "Warrior"
+                         }
+                     ]
                 """;
 
         // WHEN
@@ -111,12 +113,14 @@ class AsterixControllerTest {
         asterixRepo.save(obelix);
 
         String expected = """
-                     {
-                      "id": "2",
-                      "name": "Obelix",
-                      "age":  35,
-                      "profession": "Warrior"
-                     }
+                     [
+                         {
+                          "id": "2",
+                          "name": "Obelix",
+                          "age":  35,
+                          "profession": "Warrior"
+                         }
+                     ]
                 """;
 
         // WHEN
