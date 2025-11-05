@@ -19,8 +19,8 @@ public class AsterixController {
     }
 
     @GetMapping("/chars")
-    public List<AsterixCharacter> characters(@RequestParam Optional<String> name, @RequestParam Optional<String> id, @RequestParam Optional<String> profession, @RequestParam Optional<Integer> minAge) {
-        return asterixService.findByFilters(name, id, profession, minAge);
+    public List<AsterixCharacter> characters(@RequestParam(required = false) String name, @RequestParam(required = false) String id, @RequestParam(required = false) String profession, @RequestParam(required = false) Integer minAge) {
+        return asterixService.findByFilters(Optional.ofNullable(name), Optional.ofNullable(id), Optional.ofNullable(profession), Optional.ofNullable(minAge));
     }
 
     @PostMapping("/create")
